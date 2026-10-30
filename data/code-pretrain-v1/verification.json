@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "manifest_sha256": "e01e93ea12641bb7f12184806a86cfb50c22b071c2ebb8c2cb086fe2eb4eb459",
+  "checks": {
+    "decontaminator_detects_every_blocklist_item": true,
+    "sha256_matches_manifest:train.jsonl": true,
+    "sha256_matches_manifest:val.jsonl": true,
+    "sha256_matches_manifest:docstring_pairs_train.jsonl": true,
+    "sha256_matches_manifest:docstring_pairs_val.jsonl": true,
+    "counts_match_manifest:train": true,
+    "counts_match_manifest:val": true,
+    "no_exact_duplicates": true,
+    "no_near_duplicates": true,
+    "repo_disjoint_splits": true,
+    "split_rule_holds": true,
+    "licenses_in_allowlist": true,
+    "sizes_within_limit": true,
+    "utf8_clean": true,
+    "all_files_parse_python3": true,
+    "content_sha256_valid": true,
+    "no_contamination_rescan": true,
+    "pairs_sha256_valid": true,
+    "pairs_parse_python3": true,
+    "pairs_source_in_same_split": true,
+    "pairs_no_duplicates": true,
+    "val_fraction_about_1pct": true
+  },
+  "counts": {
+    "train_files": 144063,
+    "train_bytes": 1243316535,
+    "val_files": 1377,
+    "val_bytes": 11086187,
+    "pairs_train": 379390,
+    "pairs_val": 3244
+  },
+  "violations": {},
+  "contamination_rescan_hits": {},
+  "details": {
+    "blocklist_items": 4290,
+    "blocklist_items_missed_by_positive_control": [],
+    "val_byte_fraction": 0.00883782122405184
+  },
+  "verified_with": {
+    "script_sha256": "38e7bdb4f9b308f26b3ff8af1f9c7cf3f8e2040ce3100de8824b0aad403492f5",
+    "python": "3.10.9"
+  },
+  "training": false
+}

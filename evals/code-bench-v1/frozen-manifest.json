@@ -1,0 +1,84 @@
+{
+  "benchmark": "code-bench-v1",
+  "status": "frozen",
+  "frozen_at": "2026-10-23",
+  "sources": {
+    "humaneval": {
+      "name": "HumanEval (openai/human-eval)",
+      "file": "raw/humaneval/HumanEval.jsonl.gz",
+      "url": "https://raw.githubusercontent.com/openai/human-eval/463c980b59e818ace59f6f9803cd92c749ceae61/data/HumanEval.jsonl.gz",
+      "repository": "https://github.com/openai/human-eval",
+      "commit": "463c980b59e818ace59f6f9803cd92c749ceae61",
+      "license": "MIT",
+      "license_file": "raw/humaneval/LICENSE",
+      "license_url": "https://github.com/openai/human-eval/blob/master/LICENSE",
+      "citation": "Chen et al. 2021, Evaluating Large Language Models Trained on Code",
+      "sha256": "b796127e635a67f93fb35c04f4cb03cf06f38c8072ee7cee8833d7bee06979ef",
+      "license_file_sha256": "bcba3de214851cce46ed5af42d6698044616eeace887c3231bc7a20474ab639e"
+    },
+    "mbpp": {
+      "name": "MBPP sanitized (google-research/google-research/mbpp)",
+      "file": "raw/mbpp/sanitized-mbpp.json",
+      "url": "https://raw.githubusercontent.com/google-research/google-research/f82046ba5aabbbb427dbfd38a254d26bff08b533/mbpp/sanitized-mbpp.json",
+      "repository": "https://github.com/google-research/google-research/tree/master/mbpp",
+      "commit": "f82046ba5aabbbb427dbfd38a254d26bff08b533",
+      "license": "CC-BY-4.0",
+      "license_file": "raw/mbpp/README.md",
+      "license_url": "https://huggingface.co/datasets/google-research-datasets/mbpp",
+      "citation": "Austin et al. 2021, Program Synthesis with Large Language Models",
+      "sha256": "ca95deaa9a01ef0a6f439f88bcf0dd3db3563d22f22aad6cae04ebb9a8d8c8e9",
+      "license_file_sha256": "02d63a4ffdad806c3c87b5ea2aa91e946f6eec0c2869643b09831650883f41be"
+    },
+    "zero-composition-curriculum-v2": {
+      "name": "Zero composition curriculum v2, held-out splits",
+      "path": "data/zero-composition-curriculum-v2",
+      "files": {
+        "unseen_constants.jsonl": "a0856ce389aeb00b80b724dd099b09e32a6afbba29332fa29645a2f947575f79",
+        "unseen_compositions.jsonl": "b8bed616cea2d0731bb635a089ffded872c0310b53eecbe1b6c4b66bc72a7e12"
+      },
+      "manifest_sha256": "7e0d420e51298acacbfa39b0abffbd8f64f9613af91440afecac7105cc878407",
+      "license": "Project-authored synthetic; redistribution license not assigned"
+    }
+  },
+  "suites": {
+    "humaneval": {
+      "file": "tasks/humaneval.jsonl",
+      "tasks": 164,
+      "sha256": "c4e20f8fbe3fb1d0ae63569b81b7d034c2202ff8c8c9a27622398e0f074faa56"
+    },
+    "mbpp": {
+      "file": "tasks/mbpp.jsonl",
+      "tasks": 257,
+      "sha256": "08f4e211803ada6690ed6bf95fcc8ccdc7255f70d083bfed866147f30e9b80f9"
+    },
+    "easy": {
+      "file": "tasks/easy.jsonl",
+      "tasks": 66,
+      "sha256": "ebccc7763aa666799b6502b908283b1640ea7aa6531d85486504b01e7765713a"
+    }
+  },
+  "selection": {
+    "humaneval": "All 164 HumanEval tasks.",
+    "mbpp": "MBPP sanitized tasks whose task_id is in the official test range 11-510.",
+    "easy": "The 20 MBPP sanitized test-split tasks with the shortest stripped reference code (ties by task_id), plus every row of the curriculum's unseen_constants and unseen_compositions held-out splits."
+  },
+  "scoring": {
+    "program": "prompt + completion, run as one module; then test_code in the same namespace",
+    "prompt_format": {
+      "humaneval": "original HumanEval prompt (imports, signature, docstring)",
+      "mbpp": "docstring \"\"\"<description>\\n<first test assert>\"\"\" (bigcode-evaluation-harness style)",
+      "easy": "MBPP tasks as above; curriculum tasks as a docstring of the original instruction"
+    },
+    "pass_at_k": "unbiased estimator 1 - C(n-c,k)/C(n,k) (Chen et al. 2021), averaged over tasks",
+    "syntax_valid": "the whole program compiles in the guest CPython",
+    "runtime": {
+      "sandbox": "cpython-wasi-wasmtime",
+      "wasmtime": "49.0.0",
+      "cpython_wasm_sha256": "9f58ad347987d0a23def7eefa5aa5e8ffaef529fba26979350c44376d6b8fae3",
+      "memory_limit_bytes": 268435456,
+      "fuel_limit": 10000000000
+    },
+    "default_timeout_seconds": 20.0
+  },
+  "contamination": "Training corpora must exclude these tasks: match on prompts, canonical completions, and test asserts in tasks/*.jsonl."
+}

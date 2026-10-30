@@ -1,0 +1,28 @@
+{
+  "ncm_humaneval": {
+    "samples": 820,
+    "syntax_valid_rate": 0.0378,
+    "syntax_valid_with_code_rate": 0.0061,
+    "no_code_rate": 0.0317
+  },
+  "ar_humaneval": {
+    "samples": 820,
+    "syntax_valid_rate": 0.6573,
+    "syntax_valid_with_code_rate": 0.0598,
+    "no_code_rate": 0.5976
+  },
+  "ncm_easy": {
+    "samples": 660,
+    "syntax_valid_rate": 0.0409,
+    "syntax_valid_with_code_rate": 0.0106,
+    "no_code_rate": 0.0303
+  },
+  "ar_easy": {
+    "samples": 660,
+    "syntax_valid_rate": 0.1318,
+    "syntax_valid_with_code_rate": 0.0924,
+    "no_code_rate": 0.0394
+  },
+  "humaneval_ratio_with_code": 0.102,
+  "easy_ratio_with_code": 0.115
+}

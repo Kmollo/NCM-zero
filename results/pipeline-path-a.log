@@ -1,0 +1,12 @@
+2026-10-28 22:30:01 START
+2026-10-28 22:30:01 codec-pp05: tokenizer training (plan weight 0.05), 5000 steps
+2026-10-29 00:29:30 codec-pp05: plan probe
+2026-10-29 00:39:40 codec-pp01: tokenizer training (plan weight 0.01), 5000 steps
+2026-10-29 02:39:05 codec-pp01: plan probe
+2026-10-29 02:49:22 decision: codec-pp05 (details: runs/code-scale-v1/path-a-decision.json)
+2026-10-29 02:49:22 ncm-pp05: NCM training, 1800 steps
+2026-10-29 05:00:01 eval-pp05: plan probe with NCM (bits of help)
+2026-10-29 05:17:07 eval-pp05: amended step-6 test
+2026-10-29 05:35:32 eval-pp05: speed test
+2026-10-29 05:40:03 eval-pp05: scoring
+2026-10-29 05:41:59 PATH_A_DONE

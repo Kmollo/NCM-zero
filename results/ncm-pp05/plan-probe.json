@@ -1,0 +1,79 @@
+{
+  "levels": [
+    4,
+    8,
+    16,
+    32,
+    48,
+    64,
+    64
+  ],
+  "codec": "codec-pp05",
+  "ncm": "ncm-pp05",
+  "started": "2026-10-29 05:00",
+  "A2_1_bits_per_code": [
+    {
+      "level": 0,
+      "codes": 4,
+      "uniform": 11.0,
+      "blind_guess": 8.833,
+      "ncm": 8.017,
+      "ncm_gain": 0.816,
+      "ncm_sees_true_earlier_levels": false
+    },
+    {
+      "level": 1,
+      "codes": 8,
+      "uniform": 11.0,
+      "blind_guess": 9.525,
+      "ncm": 7.96,
+      "ncm_gain": 1.565,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 2,
+      "codes": 16,
+      "uniform": 11.0,
+      "blind_guess": 10.809,
+      "ncm": 8.833,
+      "ncm_gain": 1.977,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 3,
+      "codes": 32,
+      "uniform": 11.0,
+      "blind_guess": 10.744,
+      "ncm": 7.266,
+      "ncm_gain": 3.479,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 4,
+      "codes": 48,
+      "uniform": 11.0,
+      "blind_guess": 10.274,
+      "ncm": 5.646,
+      "ncm_gain": 4.628,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 5,
+      "codes": 64,
+      "uniform": 11.0,
+      "blind_guess": 10.611,
+      "ncm": 1.888,
+      "ncm_gain": 8.724,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 6,
+      "codes": 64,
+      "uniform": 11.0,
+      "blind_guess": 10.02,
+      "ncm": 3.784,
+      "ncm_gain": 6.236,
+      "ncm_sees_true_earlier_levels": true
+    }
+  ]
+}

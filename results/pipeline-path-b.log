@@ -1,0 +1,18 @@
+2026-10-29 12:56:21 waiting for 15:00
+2026-10-29 15:00:18 START
+2026-10-29 15:00:18 ncm-bc-l7: NCM training (block_causal, tokenizer codec-l7), 1800 steps
+2026-10-29 17:24:45 ncm-bc-l7: settings OK
+2026-10-29 17:24:45 eval-bc-l7: step-6 test
+2026-10-29 18:03:38 eval-bc-l7: speed test
+2026-10-29 18:12:06 eval-bc-l7: scoring
+2026-10-29 18:15:44 eval-bc-l7: bits per chunk
+2026-10-29 18:33:38 codec-sc: tokenizer training (codebooks 64,128,256,512,2048,2048,2048), 5000 steps
+2026-10-29 19:40:28 codec-sc: settings OK; reconstruction 99.65% tokens, 84.5% exact chunks
+2026-10-29 19:40:28 ncm-sc: NCM training (normal attention, tokenizer codec-sc), 1800 steps (refused if the tokenizer failed its gate)
+2026-10-29 21:53:51 ncm-sc: settings OK
+2026-10-29 21:53:51 eval-sc: step-6 test
+2026-10-29 22:16:25 eval-sc: speed test
+2026-10-29 22:21:25 eval-sc: scoring
+2026-10-29 22:24:03 eval-sc: bits per chunk
+2026-10-29 22:41:12 verdict: IN PROGRESS (so far: STOP recommended for the quick fixes: neither change moved quality. One bigger idea is untested (positions within a level seeing each other); try it only as a last bet.)
+2026-10-29 22:41:12 PATH_B_DONE

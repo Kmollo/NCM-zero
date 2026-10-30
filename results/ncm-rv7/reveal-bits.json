@@ -1,0 +1,43 @@
+{
+  "windows": 2048,
+  "ar_bits_per_chunk": 250.5,
+  "ncm_bits_per_chunk": {
+    "1_pass": 1190.7,
+    "3_pass": 1185.5,
+    "8_pass": 1183.9
+  },
+  "ncm_bits_per_level": {
+    "1_pass": [
+      33.1,
+      67.9,
+      147.2,
+      245.7,
+      285.0,
+      127.7,
+      284.1
+    ],
+    "3_pass": [
+      33.2,
+      67.0,
+      147.3,
+      245.4,
+      281.5,
+      127.3,
+      283.8
+    ],
+    "8_pass": [
+      33.1,
+      66.7,
+      147.3,
+      245.4,
+      280.5,
+      127.2,
+      283.7
+    ]
+  },
+  "extra_bits_1pass_vs_ar": 940.2,
+  "removed_by_3_passes": 5.2,
+  "removed_share": 0.006,
+  "cause": "the codes themselves",
+  "rule": "cause = blind guessing if 3 passes remove >= half of the extra bits over AR (fixed before results)"
+}

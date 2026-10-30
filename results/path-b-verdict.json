@@ -1,0 +1,54 @@
+{
+  "runs": {
+    "Run 1": {
+      "change": "levels see the levels above them (block_causal)",
+      "gate": {
+        "similarity_ratio": 0.711,
+        "humaneval_syntax_ratio": 0.113,
+        "easy_syntax_ratio": 0.072
+      },
+      "category": "NO PROGRESS",
+      "similarity": {
+        "ncm": 0.2351,
+        "gpt": 0.3306
+      },
+      "with_code": {
+        "humaneval_ncm": 0.00853658536585366,
+        "humaneval_ar": 0.07560975609756097,
+        "easy_ncm": 0.007575757575757576,
+        "easy_ar": 0.10454545454545454
+      },
+      "speedup_b1": 2.39,
+      "speedup_b32": 0.24,
+      "bits_per_chunk": 1114.6
+    },
+    "Run 2": {
+      "change": "smaller plan codebooks (64/128/256/512)",
+      "tokenizer": {
+        "token_accuracy": 0.9964599609375,
+        "chunk_exact": 0.8447265625,
+        "passes": true
+      },
+      "gate": {
+        "similarity_ratio": 0.727,
+        "humaneval_syntax_ratio": 0.0,
+        "easy_syntax_ratio": 0.101
+      },
+      "category": "NO PROGRESS",
+      "similarity": {
+        "ncm": 0.2405,
+        "gpt": 0.3306
+      },
+      "with_code": {
+        "humaneval_ncm": 0.0,
+        "humaneval_ar": 0.07560975609756097,
+        "easy_ncm": 0.010606060606060607,
+        "easy_ar": 0.10454545454545454
+      },
+      "speedup_b1": 4.89,
+      "speedup_b32": 0.47,
+      "bits_per_chunk": 1008.1
+    }
+  },
+  "verdict": "NO PROGRESS"
+}

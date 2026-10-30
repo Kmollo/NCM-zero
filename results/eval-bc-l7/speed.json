@@ -1,0 +1,57 @@
+{
+  "levels": [
+    4,
+    8,
+    16,
+    32,
+    48,
+    64,
+    64
+  ],
+  "before": {
+    "gpu": "83, 1395 MHz, 1455 MHz, 0 %, 19.34 W",
+    "battery_status": "2",
+    "on_ac_power": true
+  },
+  "results": {
+    "ncm_b1": {
+      "median_tokens_per_sec": 111.8,
+      "repeats": [
+        95.3,
+        111.8,
+        150.7
+      ]
+    },
+    "ar_b1": {
+      "median_tokens_per_sec": 46.8,
+      "repeats": [
+        46.9,
+        42.2,
+        46.8
+      ]
+    },
+    "ncm_b32": {
+      "median_tokens_per_sec": 202.7,
+      "repeats": [
+        203.2,
+        202.7,
+        202.5
+      ]
+    },
+    "ar_b32": {
+      "median_tokens_per_sec": 850.4,
+      "repeats": [
+        825.7,
+        850.4,
+        904.6
+      ]
+    }
+  },
+  "ncm_speedup_b1": 2.39,
+  "ncm_speedup_b32": 0.24,
+  "after": {
+    "gpu": "90, 1395 MHz, 1455 MHz, 99 %, 26.03 W",
+    "battery_status": "2",
+    "on_ac_power": true
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "levels": [
+    4,
+    8,
+    16,
+    32,
+    48,
+    64,
+    64
+  ],
+  "codec": "codec-pp01",
+  "ncm": "ncm",
+  "started": "2026-10-29 02:39",
+  "A2_1_bits_per_code": [
+    {
+      "level": 0,
+      "codes": 4,
+      "uniform": 11.0,
+      "blind_guess": 8.881,
+      "ncm": null,
+      "ncm_gain": null,
+      "ncm_sees_true_earlier_levels": false
+    },
+    {
+      "level": 1,
+      "codes": 8,
+      "uniform": 11.0,
+      "blind_guess": 9.573,
+      "ncm": null,
+      "ncm_gain": null,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 2,
+      "codes": 16,
+      "uniform": 11.0,
+      "blind_guess": 10.828,
+      "ncm": null,
+      "ncm_gain": null,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 3,
+      "codes": 32,
+      "uniform": 11.0,
+      "blind_guess": 10.744,
+      "ncm": null,
+      "ncm_gain": null,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 4,
+      "codes": 48,
+      "uniform": 11.0,
+      "blind_guess": 10.297,
+      "ncm": null,
+      "ncm_gain": null,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 5,
+      "codes": 64,
+      "uniform": 11.0,
+      "blind_guess": 10.634,
+      "ncm": null,
+      "ncm_gain": null,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 6,
+      "codes": 64,
+      "uniform": 11.0,
+      "blind_guess": 10.077,
+      "ncm": null,
+      "ncm_gain": null,
+      "ncm_sees_true_earlier_levels": true
+    }
+  ],
+  "A2_2_probe_bits_per_code": [
+    {
+      "level": 0,
+      "blind_guess": 8.881,
+      "ncm": null,
+      "probe_linear": 8.673,
+      "probe_linear_gain": 0.208,
+      "probe_mlp": 8.514,
+      "probe_mlp_gain": 0.367
+    },
+    {
+      "level": 1,
+      "blind_guess": 9.573,
+      "ncm": null,
+      "probe_linear": 8.454,
+      "probe_linear_gain": 1.119,
+      "probe_mlp": 8.335,
+      "probe_mlp_gain": 1.238
+    },
+    {
+      "level": 2,
+      "blind_guess": 10.828,
+      "ncm": null,
+      "probe_linear": 9.98,
+      "probe_linear_gain": 0.848,
+      "probe_mlp": 9.872,
+      "probe_mlp_gain": 0.956
+    }
+  ],
+  "A2_3_stability": [
+    {
+      "level": 0,
+      "changed_by_one_identifier_rename": 0.1946,
+      "changed_by_one_token_shift": 0.9988,
+      "changed_vs_unrelated_chunk": 0.9961
+    },
+    {
+      "level": 1,
+      "changed_by_one_identifier_rename": 0.2292,
+      "changed_by_one_token_shift": 0.5039,
+      "changed_vs_unrelated_chunk": 0.9969
+    },
+    {
+      "level": 2,
+      "changed_by_one_identifier_rename": 0.1899,
+      "changed_by_one_token_shift": 0.6591,
+      "changed_vs_unrelated_chunk": 0.9973
+    }
+  ],
+  "A2_3_chunks": 1024,
+  "finished": "2026-10-29 02:49"
+}

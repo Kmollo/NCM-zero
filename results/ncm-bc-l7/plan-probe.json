@@ -1,0 +1,89 @@
+{
+  "levels": [
+    4,
+    8,
+    16,
+    32,
+    48,
+    64,
+    64
+  ],
+  "codec": "codec-l7",
+  "ncm": "ncm-bc-l7",
+  "started": "2026-10-29 18:15",
+  "A2_1_bits_per_code": [
+    {
+      "level": 0,
+      "codes": 4,
+      "uniform": 11.0,
+      "blind_guess": 8.242,
+      "ncm": 8.202,
+      "ncm_gain": 0.04,
+      "ncm_sees_true_earlier_levels": false
+    },
+    {
+      "level": 1,
+      "codes": 8,
+      "uniform": 11.0,
+      "blind_guess": 9.542,
+      "ncm": 8.411,
+      "ncm_gain": 1.131,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 2,
+      "codes": 16,
+      "uniform": 11.0,
+      "blind_guess": 10.834,
+      "ncm": 9.069,
+      "ncm_gain": 1.764,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 3,
+      "codes": 32,
+      "uniform": 11.0,
+      "blind_guess": 10.734,
+      "ncm": 7.522,
+      "ncm_gain": 3.212,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 4,
+      "codes": 48,
+      "uniform": 11.0,
+      "blind_guess": 10.191,
+      "ncm": 5.639,
+      "ncm_gain": 4.552,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 5,
+      "codes": 64,
+      "uniform": 11.0,
+      "blind_guess": 10.551,
+      "ncm": 1.889,
+      "ncm_gain": 8.663,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 6,
+      "codes": 64,
+      "uniform": 11.0,
+      "blind_guess": 10.052,
+      "ncm": 3.705,
+      "ncm_gain": 6.346,
+      "ncm_sees_true_earlier_levels": true
+    }
+  ],
+  "ncm_total_bits_per_chunk": 1114.6,
+  "codebooks": [
+    2048,
+    2048,
+    2048,
+    2048,
+    2048,
+    2048,
+    2048
+  ]
+}

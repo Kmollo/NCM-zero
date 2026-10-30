@@ -1,0 +1,192 @@
+{
+  "levels": [
+    4,
+    8,
+    16,
+    32,
+    48,
+    64,
+    64
+  ],
+  "started": "2026-10-27 09:21",
+  "reference_repetition": 0.0713,
+  "A1_continuation": {
+    "ncm_greedy": {
+      "char_similarity": 0.1354,
+      "token_match": 0.0308,
+      "repetition": 0.6757
+    },
+    "ar_greedy": {
+      "char_similarity": 0.2816,
+      "token_match": 0.074,
+      "repetition": 0.6742
+    },
+    "ncm_t0.8_p0.95": {
+      "char_similarity": 0.2388,
+      "token_match": 0.0209,
+      "repetition": 0.0088
+    },
+    "ar_t0.8_p0.95": {
+      "char_similarity": 0.331,
+      "token_match": 0.0524,
+      "repetition": 0.1293
+    },
+    "ncm_t1.0_full": {
+      "char_similarity": 0.2263,
+      "token_match": 0.0165,
+      "repetition": 0.0017
+    },
+    "ar_t1.0_full": {
+      "char_similarity": 0.2961,
+      "token_match": 0.0363,
+      "repetition": 0.0257
+    },
+    "ncm_t1.0_k50_p0.9": {
+      "char_similarity": 0.2446,
+      "token_match": 0.0269,
+      "repetition": 0.0174
+    }
+  },
+  "A2_teacher_forced_level_accuracy": [
+    {
+      "level": 0,
+      "codes": 4,
+      "accuracy": 0.0156
+    },
+    {
+      "level": 1,
+      "codes": 8,
+      "accuracy": 0.0493
+    },
+    {
+      "level": 2,
+      "codes": 16,
+      "accuracy": 0.0669
+    },
+    {
+      "level": 3,
+      "codes": 32,
+      "accuracy": 0.203
+    },
+    {
+      "level": 4,
+      "codes": 48,
+      "accuracy": 0.2994
+    },
+    {
+      "level": 5,
+      "codes": 64,
+      "accuracy": 0.74
+    },
+    {
+      "level": 6,
+      "codes": 64,
+      "accuracy": 0.4728
+    }
+  ],
+  "A2_teacher_forced_all_levels_decoded": {
+    "char_similarity": 0.7371,
+    "token_match": 0.707,
+    "repetition": 0.0287
+  },
+  "A2_forced_levels": [
+    {
+      "true_levels_0_to": -1,
+      "char_similarity": 0.1354,
+      "token_match": 0.0308,
+      "repetition": 0.6757
+    },
+    {
+      "true_levels_0_to": 0,
+      "char_similarity": 0.188,
+      "token_match": 0.0641,
+      "repetition": 0.376
+    },
+    {
+      "true_levels_0_to": 1,
+      "char_similarity": 0.3067,
+      "token_match": 0.1746,
+      "repetition": 0.1636
+    },
+    {
+      "true_levels_0_to": 2,
+      "char_similarity": 0.4325,
+      "token_match": 0.3352,
+      "repetition": 0.0581
+    },
+    {
+      "true_levels_0_to": 3,
+      "char_similarity": 0.6747,
+      "token_match": 0.6154,
+      "repetition": 0.0247
+    },
+    {
+      "true_levels_0_to": 4,
+      "char_similarity": 0.8253,
+      "token_match": 0.8136,
+      "repetition": 0.0366
+    },
+    {
+      "true_levels_0_to": 5,
+      "char_similarity": 0.9468,
+      "token_match": 0.9586,
+      "repetition": 0.0622
+    },
+    {
+      "true_levels_0_to": 6,
+      "char_similarity": 0.9965,
+      "token_match": 0.9968,
+      "repetition": 0.0703
+    }
+  ],
+  "A3_train_windows": {
+    "ncm_greedy": {
+      "char_similarity": 0.1348,
+      "token_match": 0.0289,
+      "repetition": 0.6746
+    },
+    "ar_greedy": {
+      "char_similarity": 0.2887,
+      "token_match": 0.0625,
+      "repetition": 0.6653
+    }
+  },
+  "A1_humaneval": {
+    "ncm_greedy": {
+      "syntax_valid_rate": 0.122,
+      "repetition": 0.8322,
+      "samples": 820,
+      "example": {
+        "task_id": "HumanEval/0",
+        "completion": ".0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0.0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,\n"
+      }
+    },
+    "ncm_t0.8_p0.95": {
+      "syntax_valid_rate": 0.022,
+      "repetition": 0.0102,
+      "samples": 820,
+      "example": {
+        "task_id": "HumanEval/0",
+        "completion": "estest of of w wDEFAULT featureLe delete sparse sparse4)\n    #STalf\n"
+      }
+    },
+    "ncm_t1.0_full": {
+      "syntax_valid_rate": 0.0183,
+      "repetition": 0.0009,
+      "samples": 820,
+      "example": {
+        "task_id": "HumanEval/0",
+        "completion": "\n       83 of of w wDEFAULT featureOperatortryGener sparse44\n    #downom\n"
+      }
+    },
+    "ncm_t1.0_k50_p0.9": {
+      "syntax_valid_rate": 0.0329,
+      "repetition": 0.0289,
+      "samples": 820,
+      "example": {
+        "task_id": "HumanEval/0",
+        "completion": " import import tf_64\nfrom tensorflow_util.mb)\n\nfrom x,1,1,1,)\n\n\n\nfrom as np. *\n_\nfrom neutron import np np np.array([ 2,0.0.,0.3.0,0. 0. 0\n1,1, g, 8,from tensorflow. np.array_array)\n   array_array([array([0,0,0, 2, array\n    array_ops. np, 5, 6,0,0, [], 30])\n    tf. 0],], [1], [1\n"
+      }
+    }
+  }
+}

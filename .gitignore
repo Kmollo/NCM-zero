@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.pytest_cache/
+upstream/
+runs/
+data/code-pretrain-v1/*.jsonl
+data/code-pretrain-v1/source_cache/
+*.pt
+.env

@@ -1,0 +1,13 @@
+2026-10-29 23:51:32 START
+2026-10-29 23:51:32 ncm-rv: NCM training (reveal levels 0-3, 3 passes, tokenizer codec-l7), 1800 steps
+2026-10-30 00:07:45 restarted by plan amendment: reveal on all levels (ncm-rv7) plus cause measurement; the ncm-rv run above was stopped at the user's request
+2026-10-30 00:08:39 START
+2026-10-30 00:08:39 ncm-rv7: NCM training (reveal all levels, 3 passes, tokenizer codec-l7), 1800 steps
+2026-10-30 02:19:23 ncm-rv7: settings OK
+2026-10-30 02:19:23 ncm-rv7: cause measurement (bits with 1 / 3 / 8 passes vs GPT)
+2026-10-30 02:38:55 eval-rv7: step-6 test
+2026-10-30 03:51:23 eval-rv7: speed test
+2026-10-30 04:10:01 eval-rv7: scoring
+2026-10-30 04:12:07 eval-rv7: bits per chunk
+2026-10-30 04:29:14 PATH_C_DONE
+2026-10-30 04:29:15 verdict: STOP: the last bet did not reach the progress bar; stop NCM for code at this scale.

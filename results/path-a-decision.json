@@ -1,0 +1,37 @@
+{
+  "candidates": [
+    {
+      "codec": "codec-pp05",
+      "token_accuracy": 0.997650146484375,
+      "chunk_exact": 0.8896484375,
+      "level0_probe_mlp_gain": 1.046,
+      "level0_probe_linear_gain": 0.871,
+      "level0_shift_changed": 0.9858,
+      "codes_used_l0_l2": [
+        510,
+        809,
+        1962
+      ],
+      "reconstruction_pass": true,
+      "predictability_pass": true,
+      "pass": true
+    },
+    {
+      "codec": "codec-pp01",
+      "token_accuracy": 0.9977264404296875,
+      "chunk_exact": 0.8896484375,
+      "level0_probe_mlp_gain": 0.367,
+      "level0_probe_linear_gain": 0.208,
+      "level0_shift_changed": 0.9988,
+      "codes_used_l0_l2": [
+        680,
+        834,
+        1965
+      ],
+      "reconstruction_pass": true,
+      "predictability_pass": false,
+      "pass": false
+    }
+  ],
+  "chosen": "codec-pp05"
+}

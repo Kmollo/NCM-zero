@@ -1,0 +1,22 @@
+{
+  "upstream": {
+    "repetition": 0.0045,
+    "mean_words": 104.4,
+    "examples": [
+      "\nOne day, a little girl named Lucy found an unknown envelope on the floor. It was a small scale with a big hook. Lucy wanted to know what was inside the envelope. She put her foot on the scale and it fell on.\nLucy went to her room and started to look around. She tried to move the chair and move the,, the top, she peeked at it more things. She saw a beautiful outside. Lucy looked out the window and saw a beautiful tree inside. She ran to the tree and climbed on the chair.\nAfter the tree, Lucy discovered a tiny door in her special room. She opened",
+      "\nOnce upon a time, there was a little girl named Lily. Lily lived in a small house near a dangerous forest. One day, Lily went for a walk in the woods. She saw the sun shining on the ground.\nAs she walked, Lily heard a sound coming from inside. She was scared, but she decided to go listen. The sound came to her sound and she reached it.\nLily followed the sound and a big monster in the forest. The monster saw what Lily was doing and he was able again, scared, Lily thanked the monster. They walked back to her house and told dad about part of the forest",
+      "\n\n\nLily is a dolphin. She likes to swim in the big sea. She calls her parents and swims with her, the fish and they swim and smile and say, \"You are very good, fish. You can be useful like me.\"\nOne day, Lily sees a boat on the sea. She sees the fish and the fish come out of the sand. Lily listens as the fish swim and the duck likes. She says, \"I miss you, big fish. Snap try one is too small. I am slow. And you are slow. You will find me and the big fish like you.\" teased dish"
+    ]
+  },
+  "ours": {
+    "repetition": 0.0045,
+    "mean_words": 104.4,
+    "examples": [
+      "\nOne day, a little girl named Lucy found an unknown envelope on the floor. It was a small scale with a big hook. Lucy wanted to know what was inside the envelope. She put her foot on the scale and it fell on.\nLucy went to her room and started to look around. She tried to move the chair and move the,, the top, she peeked at it more things. She saw a beautiful outside. Lucy looked out the window and saw a beautiful tree inside. She ran to the tree and climbed on the chair.\nAfter the tree, Lucy discovered a tiny door in her special room. She opened",
+      "\nOnce upon a time, there was a little girl named Lily. Lily lived in a small house near a dangerous forest. One day, Lily went for a walk in the woods. She saw the sun shining on the ground.\nAs she walked, Lily heard a sound coming from inside. She was scared, but she decided to go listen. The sound came to her sound and she reached it.\nLily followed the sound and a big monster in the forest. The monster saw what Lily was doing and he was able again, scared, Lily thanked the monster. They walked back to her house and told dad about part of the forest",
+      "\n\n\nLily is a dolphin. She likes to swim in the big sea. She calls her parents and swims with her, the fish and they swim and smile and say, \"You are very good, fish. You can be useful like me.\"\nOne day, Lily sees a boat on the sea. She sees the fish and the fish come out of the sand. Lily listens as the fish swim and the duck likes. She says, \"I miss you, big fish. Snap try one is too small. I am slow. And you are slow. You will find me and the big fish like you.\" teased dish"
+    ]
+  },
+  "decode_paths_max_abs_diff": 0.0,
+  "fp16_autocast_nonfinite_levels": "11 of 11"
+}

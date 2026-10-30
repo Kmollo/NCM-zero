@@ -1,0 +1,14 @@
+{
+  "stage": "codec",
+  "steps": 5000,
+  "batch": 64,
+  "params": 10469120,
+  "vocab": 8192,
+  "train_seconds": 1121.2,
+  "final_loss": 6.357491970062256,
+  "val_reconstruction": {
+    "token_accuracy": 0.87469482421875,
+    "chunk_exact": 0.025390625,
+    "chunks": 1024
+  }
+}

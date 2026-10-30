@@ -1,0 +1,9 @@
+{
+  "stage": "ar",
+  "steps": 1800,
+  "batch": 32,
+  "params": 15666048,
+  "vocab": 8192,
+  "train_seconds": 5570.7,
+  "final_loss": 3.090498685836792
+}

@@ -1,0 +1,111 @@
+{
+  "levels": [
+    4,
+    8,
+    16,
+    32,
+    48,
+    64,
+    64
+  ],
+  "started": "2026-10-29 17:25",
+  "protocol": "t0.8 top_p0.95, mean of seeds 0-2, 256 val windows (rng 7)",
+  "continuation": {
+    "reference_repetition": 0.0713,
+    "codec_oracle": {
+      "char_similarity": 0.9965,
+      "token_match": 0.9968,
+      "repetition": 0.0703
+    },
+    "ncm_sampled": {
+      "char_similarity": 0.2351,
+      "token_match": 0.0221,
+      "repetition": 0.0089,
+      "per_seed": [
+        {
+          "char_similarity": 0.2378,
+          "token_match": 0.0218,
+          "repetition": 0.0086
+        },
+        {
+          "char_similarity": 0.2353,
+          "token_match": 0.0232,
+          "repetition": 0.009
+        },
+        {
+          "char_similarity": 0.2322,
+          "token_match": 0.0212,
+          "repetition": 0.0092
+        }
+      ]
+    },
+    "ncm_greedy": {
+      "char_similarity": 0.1455,
+      "token_match": 0.0327,
+      "repetition": 0.5898
+    },
+    "ar_sampled": {
+      "char_similarity": 0.3306,
+      "token_match": 0.0537,
+      "repetition": 0.129,
+      "per_seed": [
+        {
+          "char_similarity": 0.331,
+          "token_match": 0.0524,
+          "repetition": 0.1293
+        },
+        {
+          "char_similarity": 0.32,
+          "token_match": 0.0581,
+          "repetition": 0.1402
+        },
+        {
+          "char_similarity": 0.3407,
+          "token_match": 0.0507,
+          "repetition": 0.1175
+        }
+      ]
+    },
+    "ar_greedy": {
+      "char_similarity": 0.2816,
+      "token_match": 0.074,
+      "repetition": 0.6742
+    }
+  },
+  "bench": {
+    "easy": {
+      "ncm": {
+        "syntax_valid_rate": 0.04242424242424243,
+        "syntax_valid_with_code_rate": 0.007575757575757576,
+        "samples": 660
+      },
+      "ar": {
+        "syntax_valid_rate": 0.13787878787878788,
+        "syntax_valid_with_code_rate": 0.10454545454545454,
+        "samples": 660
+      }
+    },
+    "humaneval": {
+      "ncm": {
+        "syntax_valid_rate": 0.032926829268292684,
+        "syntax_valid_with_code_rate": 0.00853658536585366,
+        "samples": 820
+      },
+      "ar": {
+        "syntax_valid_rate": 0.6865853658536586,
+        "syntax_valid_with_code_rate": 0.07560975609756097,
+        "samples": 820
+      }
+    }
+  },
+  "gate_quality": {
+    "similarity_ratio": 0.711,
+    "humaneval_syntax_ratio": 0.113,
+    "easy_syntax_ratio": 0.072,
+    "old_humaneval_syntax_ratio_counts_blank": 0.048,
+    "old_easy_syntax_ratio_counts_blank": 0.308,
+    "rule": "similarity_ratio, humaneval_syntax_ratio and easy_syntax_ratio each >= 0.8; syntax ratios use syntax-valid completions that contain code (amendment 2026-10-29); speed judged from speed.json",
+    "pass": false
+  },
+  "finished": "2026-10-29 18:03"
+}

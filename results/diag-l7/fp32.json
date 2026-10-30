@@ -1,0 +1,12 @@
+{
+ "ncm_fp32_greedy": {
+  "char_similarity": 0.1357,
+  "token_match": 0.031,
+  "repetition": 0.6766
+ },
+ "ncm_fp32_t1.0_k50_p0.9": {
+  "char_similarity": 0.2447,
+  "token_match": 0.0267,
+  "repetition": 0.0172
+ }
+}

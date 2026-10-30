@@ -1,0 +1,59 @@
+{
+  "levels": [
+    4,
+    8,
+    16,
+    32,
+    64
+  ],
+  "codec": "codec",
+  "ncm": "ncm",
+  "started": "2026-10-28 13:19",
+  "A2_1_bits_per_code": [
+    {
+      "level": 0,
+      "codes": 4,
+      "uniform": 11.0,
+      "blind_guess": 6.897,
+      "ncm": 6.477,
+      "ncm_gain": 0.419,
+      "ncm_sees_true_earlier_levels": false
+    },
+    {
+      "level": 1,
+      "codes": 8,
+      "uniform": 11.0,
+      "blind_guess": 7.127,
+      "ncm": 6.317,
+      "ncm_gain": 0.811,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 2,
+      "codes": 16,
+      "uniform": 11.0,
+      "blind_guess": 7.35,
+      "ncm": 5.979,
+      "ncm_gain": 1.372,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 3,
+      "codes": 32,
+      "uniform": 11.0,
+      "blind_guess": 7.714,
+      "ncm": 5.758,
+      "ncm_gain": 1.956,
+      "ncm_sees_true_earlier_levels": true
+    },
+    {
+      "level": 4,
+      "codes": 64,
+      "uniform": 11.0,
+      "blind_guess": 8.019,
+      "ncm": 3.991,
+      "ncm_gain": 4.028,
+      "ncm_sees_true_earlier_levels": true
+    }
+  ]
+}

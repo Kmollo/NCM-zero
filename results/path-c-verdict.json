@@ -1,0 +1,32 @@
+{
+  "run": "ncm-rv7",
+  "change": "positions in every level see codes already chosen in their level; 3 passes per level",
+  "cause": {
+    "ar_bits_per_chunk": 250.5,
+    "ncm_bits_per_chunk": {
+      "1_pass": 1190.7,
+      "3_pass": 1185.5,
+      "8_pass": 1183.9
+    },
+    "extra_bits_1pass_vs_ar": 940.2,
+    "removed_by_3_passes": 5.2,
+    "removed_share": 0.006,
+    "cause": "the codes themselves"
+  },
+  "category": "NO PROGRESS",
+  "verdict": "STOP",
+  "gate": {
+    "similarity_ratio": 0.714,
+    "humaneval_syntax_ratio": 0.102,
+    "easy_syntax_ratio": 0.115
+  },
+  "with_code": {
+    "humaneval_ncm": 0.006097560975609756,
+    "humaneval_ar": 0.05975609756097561,
+    "easy_ncm": 0.010606060606060607,
+    "easy_ar": 0.09242424242424242
+  },
+  "bits_per_chunk_nothing_shown": 1193.1,
+  "speedup_b1": 0.59,
+  "speedup_b32": 0.08
+}

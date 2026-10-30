@@ -1,0 +1,8 @@
+{
+  "vocab": 8192,
+  "bpe_roundtrip_exact": "300/300",
+  "tokens": {
+    "train": 118157342,
+    "val": 915945
+  }
+}

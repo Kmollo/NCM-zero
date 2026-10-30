@@ -1,0 +1,29 @@
+{
+  "stage": "ncm",
+  "steps": 1800,
+  "batch": 32,
+  "params": 12929536,
+  "vocab": 8192,
+  "levels": [
+    4,
+    8,
+    16,
+    32,
+    48,
+    64,
+    64
+  ],
+  "codebooks": [
+    64,
+    128,
+    256,
+    512,
+    2048,
+    2048,
+    2048
+  ],
+  "codec": "codec-sc",
+  "attn_pattern": "block_diagonal",
+  "train_seconds": 7976.5,
+  "final_loss": 3.609813928604126
+}

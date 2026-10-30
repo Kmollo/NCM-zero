@@ -1,0 +1,321 @@
+{
+  "result_type": "code_bench_score",
+  "benchmark": "code-bench-v1",
+  "suite": "easy",
+  "suite_sha256": "ebccc7763aa666799b6502b908283b1640ea7aa6531d85486504b01e7765713a",
+  "valid": true,
+  "tasks_in_suite": 66,
+  "tasks_scored": 66,
+  "tasks_missing": 0,
+  "samples": 660,
+  "samples_per_task": {
+    "min": 10,
+    "max": 10
+  },
+  "pass@1": 0.0,
+  "pass@10": 0.0,
+  "pass_at_k_omitted": [],
+  "syntax_valid_rate": 0.131818,
+  "sample_pass_rate": 0.0,
+  "outcomes": {
+    "passed": 0,
+    "syntax_error": 573,
+    "candidate_error": 55,
+    "test_failed": 0,
+    "test_error": 32,
+    "timeout": 0,
+    "fuel_exhausted": 0,
+    "output_limit": 0,
+    "crash": 0,
+    "input_limit": 0,
+    "other_failure": 0,
+    "infra_error": 0
+  },
+  "generation_latency_s": {
+    "count": 660,
+    "median": 0.193054,
+    "mean": 0.199742
+  },
+  "generation_tokens_per_s": {
+    "count": 660,
+    "median": 663.027386
+  },
+  "execution": {
+    "samples": 660,
+    "unique_programs": 660,
+    "syntax_rejected_without_execution": 573,
+    "guest_executions": 87,
+    "timeout_retries": 0,
+    "timeout_retries_recovered": 0,
+    "timeout_s": 60.0,
+    "workers": 6,
+    "median_guest_wall_s": 1.39,
+    "scoring_wall_s": 29.11
+  },
+  "per_task": {
+    "Mbpp/14": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/58": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/59": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/62": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/77": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/89": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/105": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/135": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/234": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/267": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/268": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/269": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/279": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/287": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/292": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/435": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/457": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/458": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/460": {
+      "n": 10,
+      "c": 0
+    },
+    "Mbpp/477": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/add/8/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/add/8/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/add/9/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/add/9/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/subtract/8/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/subtract/8/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/subtract/9/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/subtract/9/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/multiply/8/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/multiply/8/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/multiply/9/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/multiply/9/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/floor_divide/8/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/floor_divide/8/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/floor_divide/9/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/floor_divide/9/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/remainder/8/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/remainder/8/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/remainder/9/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/remainder/9/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/divisible/8/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/divisible/8/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/divisible/9/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/divisible/9/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/less/8/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/less/8/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/less/9/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/less/9/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/greater/8/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/greater/8/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/greater/9/template_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_constants/greater/9/template_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_compositions/multiply_then_add/1/4/composition_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_compositions/multiply_then_add/1/4/composition_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_compositions/add_then_multiply/2/4/composition_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_compositions/add_then_multiply/2/4/composition_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_compositions/multiply_then_add/2/4/composition_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_compositions/multiply_then_add/2/4/composition_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_compositions/multiply_then_add/2/5/composition_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_compositions/multiply_then_add/2/5/composition_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_compositions/add_then_multiply/3/3/composition_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_compositions/add_then_multiply/3/3/composition_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_compositions/add_then_multiply/3/5/composition_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_compositions/add_then_multiply/3/5/composition_1": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_compositions/multiply_then_add/4/5/composition_0": {
+      "n": 10,
+      "c": 0
+    },
+    "zero-composition-curriculum-v2/unseen_compositions/multiply_then_add/4/5/composition_1": {
+      "n": 10,
+      "c": 0
+    }
+  }
+}

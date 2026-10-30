@@ -1,0 +1,9 @@
+{
+  "stage": "ncm",
+  "steps": 1800,
+  "batch": 32,
+  "params": 12530944,
+  "vocab": 8192,
+  "train_seconds": 5576.9,
+  "final_loss": 3.8835208415985107
+}
