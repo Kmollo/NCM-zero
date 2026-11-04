@@ -1,0 +1,5 @@
+2026-11-03 21:38:27 START
+2026-11-03 21:38:28 codec-lk4: tokenizer training (lookup-group4 encoder, 4-block decoder), 5000 steps
+2026-11-03 22:53:52 STOPPED: codec-lk4 failed the reconstruction gate
+2026-11-03 22:53:52 IDEA_1B_DONE
+2026-11-03 22:53:52 verdict: STOP: codec-lk4 failed the reconstruction gate

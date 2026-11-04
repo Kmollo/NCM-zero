@@ -1,0 +1,48 @@
+{
+  "stage": "ncm",
+  "steps": 300,
+  "lam": 0.0,
+  "batch": 32,
+  "accum": 1,
+  "from_codec": "codec-l7",
+  "from_ncm": "ncm-l7",
+  "codec_lr": 0.0001,
+  "ncm_lr": 0.0003,
+  "taus": [
+    6726.921875,
+    1.4417858123779297,
+    3.6360931396484375,
+    15.399200439453125,
+    4.502677917480469,
+    22.33777618408203,
+    2.095386505126953
+  ],
+  "levels": [
+    4,
+    8,
+    16,
+    32,
+    48,
+    64,
+    64
+  ],
+  "codebooks": [
+    2048,
+    2048,
+    2048,
+    2048,
+    2048,
+    2048,
+    2048
+  ],
+  "encoder": "attn",
+  "dec_layers": 2,
+  "joint": true,
+  "codec": "codec-jt-pre-0",
+  "attn_pattern": "block_diagonal",
+  "reveal": [],
+  "passes": 1,
+  "params": 12929536,
+  "vocab": 8192,
+  "train_seconds": 1503.9
+}

@@ -15,7 +15,7 @@ import torch
 import torch.nn.functional as F
 
 from code_scale import data
-from code_scale.models import ATTN, PASSES, REVEAL, SHAPE, random_shown, build_ar, build_codec, build_ncm, count, ncm_logits, ncm_loss
+from code_scale.models import ATTN, CODEC, ENC, PASSES, REVEAL, SHAPE, random_shown, build_ar, build_codec, build_ncm, count, ncm_logits, ncm_loss
 from code_scale.plan_loss import PlanPredictor, ar_prefix_features, info_nce, level0_latent
 
 RUNS = Path("runs/code-scale-v1")
@@ -36,6 +36,11 @@ def lr_at(step, total, peak, warmup=200):
 
 
 def load_codec(vocab):
+    # The two norms have no weights, so a wrong CODE_SCALE_ENC could load silently; check the recorded encoder.
+    s = json.loads((RUNS / CODEC_DIR / "summary.json").read_text())
+    if s.get("encoder", "attn") != ENC or s.get("dec_layers", 2) != CODEC["dec_layers"]:
+        raise ValueError(f"{CODEC_DIR} was trained with encoder {s.get('encoder', 'attn')}, decoder "
+                         f"{s.get('dec_layers', 2)} blocks; now CODE_SCALE_ENC={ENC}, CODE_SCALE_DEC={CODEC['dec_layers']}")
     codec = build_codec(vocab).to(DEV)
     state = torch.load(RUNS / CODEC_DIR / "final.pt", map_location=DEV, weights_only=False)
     codec.load_state_dict(state["model"])
@@ -129,6 +134,8 @@ def main():
     else:
         model = build_ar(vocab).to(DEV)
         batch, peak = 32, 1e-3
+    if os.environ.get("CODE_SCALE_TEST_BATCH"):  # dry runs only (small GPU share); real runs never set it
+        batch = min(batch, int(os.environ["CODE_SCALE_TEST_BATCH"]))
     params = [p for p in model.parameters() if p.requires_grad]
     if args.stage == "codec" and planner is not None:
         params += list(planner.parameters())
@@ -138,7 +145,7 @@ def main():
     started = time.time()
     meta = {"stage": args.stage, "steps": args.steps, "batch": batch, "params": count(model), "vocab": vocab}
     if args.stage in ("codec", "ncm"):
-        meta.update(levels=SHAPE["levels"], codebooks=SHAPE["codebooks"])
+        meta.update(levels=SHAPE["levels"], codebooks=SHAPE["codebooks"], encoder=ENC, dec_layers=CODEC["dec_layers"])
     if args.stage == "ncm":
         meta.update(codec=CODEC_DIR, attn_pattern=ATTN, reveal=REVEAL, passes=PASSES if REVEAL else 1)
     if args.stage == "codec":

@@ -286,3 +286,60 @@ same 64 tokens. The codes are computed from the text, so a perfect code model ne
 the text's bits. Cause rule: if 3 passes remove at least half of NCM's extra bits over AR, the
 cause is blind guessing within a level; otherwise the codes themselves (tokenizer), which no
 sampler can fix. The quality rule above is unchanged.
+
+## Idea 1 (fixed 2026-11-03 ~12:55, before any idea-1 result): upstream's lookup tokenizer encoder
+
+**Why.** Path C showed the extra bits are in the codes themselves. The Alien search (docs/alien-search/README.md)
+found that every code_scale tokenizer deviates from upstream's released text tokenizers: ours encodes with
+2 bidirectional attention layers plus positions; upstream's (lm1b, tinystories, xsum, owt) use a token-lookup
+encoder (`enc_layers=0`), and lm1b also drops positions. One change: the encoder (`CODE_SCALE_ENC`,
+code_scale/models.py). Everything else as codec-l7 / ncm-l7 (levels [4,8,16,32,48,64,64], codebook 2,048,
+restart fix, codec 5,000 steps, NCM 1,800 steps, block_diagonal attention, no reveals).
+Two arms: `lookup-group4` (lm1b exactly: GroupNorm(4) over the chunk) and `lookup-layer` (LayerNorm per
+position, so each position's pre-quantization input is its own token alone).
+
+**Pre-test (code_scale/pretest_1.sh, run now).** Each arm trains 1,000 steps of codec-l7's 5,000-step
+schedule. codec-l7 had 94.0% token accuracy at step 1,000. An arm qualifies if its token accuracy at its
+last eval (step 999, 256 chunks) is >= 85%. Tonight's arm = the qualifying arm with the higher token
+accuracy (tie within 0.5 points: lookup-group4, upstream's recipe). Neither qualifies: STOP idea 1
+(the lookup encoder cannot reconstruct code at this size), no night run.
+
+**Night (code_scale/pipeline_1.sh, waits for runs/code-scale-v1/HOLD).** Codec 5,000 steps (codec-lk) ->
+reconstruction gate (>= 99% tokens, >= 50% exact chunks; train.py enforces it). If the gate fails and the
+other arm qualified, that arm is trained instead. Then NCM 1,800 steps (ncm-lk) -> bits per level ->
+step-6 test (eval-lk) -> scoring -> verdict (code_scale/decide_1.py -> runs/code-scale-v1/idea-1-verdict.md).
+
+**Bits measurement.** code_scale/level_bits.py: teacher-forced bits per 64-token chunk per level, 2,048
+held-out windows (same seed as reveal_bits), vs the AR control's bits on the same tokens. The baseline is
+**ncm-l7 measured by the same script** (measured before tonight's run; stored as
+runs/code-scale-v1/ncm-l7/level-bits.json). extra = NCM bits - AR bits.
+
+**Bits rule.** PASS only if all hold:
+1. extra(ncm-lk) <= 0.7 x extra(ncm-l7) (at least 30% of the extra bits removed);
+2. levels 0-4 together drop by at least half of that required 30% (so cheapening only levels 5-6, which the
+   decoder mostly ignores, cannot pass);
+3. the tokenizer gate held.
+
+**Verdict.** CONTINUE if the bits rule passes (next: ideas 2/3 on top of this tokenizer) or the step-6
+category is PROGRESS/PASS (same thresholds as Path C). Otherwise STOP NCM for code at this scale: the
+tokenizer recipe was not the cause. Gate failure on both arms: STOP. No extra nights. Similarity ratio and
+syntax ratios are reported in either case. Runs offline.
+
+**Pre-test and baseline (2026-11-03 13:20, before the night run).** Pre-test at step 999: lookup-group4 91.7%
+tokens, lookup-layer 91.9% (codec-l7: 94.0% at step 1,000). Both qualify; the difference is inside the 0.5-point
+tie, so tonight's arm is lookup-group4, with lookup-layer as the gate fallback. Baseline (ncm-l7, level_bits.py):
+GPT 250.5, NCM 1,124.4 bits per chunk, extra 873.9; per level 32.7, 67.2, 144.6, 238.8, 270.5, 120.5, 250.1.
+So the bits rule needs extra <= 611.7 and a levels 0-4 drop >= 131.1. Night starts at 19:30 (user's choice).
+
+## Idea 1b (fixed 2026-11-03 ~21:45, before any idea-1b result): lookup encoder plus upstream's 4-block decoder
+
+**Why.** Idea 1 stopped on the reconstruction gate (lookup tokenizers flat near 96.5% tokens with our 2-block
+decoder). Upstream lm1b pairs the lookup encoder with a 4-block decoder (`dec_layers: 4`); the user asked to
+try that. One change vs codec-lk-lookup-group4: `CODE_SCALE_DEC=4` (width stays 256, so codebook vectors and
+the NCM generator are unchanged; tokenizer 9.27M -> 10.85M parameters). Single arm, no fallback, no pre-test.
+Names: codec-lk4, ncm-lk4, eval-lk4; code_scale/pipeline_1b.sh; verdict runs/code-scale-v1/idea-1b-verdict.md.
+
+**Rule.** Exactly idea 1's: gate (>= 99% tokens, >= 50% exact chunks); bits rule vs the same ncm-l7 baseline
+(extra <= 611.7 and a levels 0-4 drop >= 131.1); CONTINUE if the bits rule passes or step-6 quality is
+PROGRESS/PASS, otherwise STOP. Gate failure: STOP, and this closes the tokenizer-recipe question at this size.
+No further nights on this line.

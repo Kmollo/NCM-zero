@@ -1,7 +1,7 @@
 # code-scale-v1 results: NCM vs autoregressive on real Python (local smoke scale)
 
 Run 2026-10-23, 01:50–06:34 local, Quadro T1000. Plan and decision rule:
-[code-scale-v1-plan.md](code-scale-v1-plan.md). Raw outputs: `runs/code-scale-v1/` (small result files are copied in `results/`).
+[code-scale-v1-plan.md](code-scale-v1-plan.md). Raw outputs: `runs/code-scale-v1/`.
 
 ## Outcome: NCM did not pass the step-6 gate; step 7 was not attempted
 
@@ -24,7 +24,7 @@ Run 2026-10-23, 01:50–06:34 local, Quadro T1000. Plan and decision rule:
 - Even a perfect generator is capped by it: decoding the *reference* codes
   ("codec oracle") reaches only 0.61 char similarity. NCM's generated output
   often collapses into repeated filler (e.g. lines of `#`).
-- The later fixed-subset diagnostic (codec-diagnostic-v2-results.md, from the wider Zero project; not included here)
+- The later fixed-subset diagnostic ([codec-diagnostic-v2-results.md](codec-diagnostic-v2-results.md))
   agrees: the same encoder/decoder without quantization reconstructs 100% of
   training chunks, but quantized variants stay at 35–42% token accuracy.
 
@@ -355,3 +355,83 @@ the result did not improve.
 same text, and nearly all of that excess is in the codes. Each code is hard to predict from the
 prefix even when every other code in its level is known. Under the plan's rules, NCM work on code
 at this scale stops here.
+
+## Idea 1 (2026-11-03): upstream's lookup tokenizer encoder cannot reconstruct code at this size; verdict STOP
+
+Plan and rule: docs/ncm-next-plan.md, "Idea 1" (fixed before results). Pipeline code_scale/pipeline_1.sh,
+started 19:30, stopped by rule at 21:24. Verdict file runs/code-scale-v1/idea-1-verdict.md.
+
+| Tokenizer (5,000 steps, same levels, decoder and schedule) | Tokens rebuilt | Exact chunks | Gate (99% / 50%) |
+|---|---|---|---|
+| codec-l7 (2 attention layers + positions, ours so far) | 99.72% | 88.1% | pass |
+| codec-lk-lookup-group4 (upstream lm1b encoder) | 96.61% | 20.7% | fail |
+| codec-lk-lookup-layer (lookup, per-position LayerNorm) | 95.85% | 17.7% | fail |
+
+- Pre-test at step 1,000: 91.7% and 91.9% vs codec-l7's 94.0%, both above the 85% bar. The gap then widened:
+  the lookup tokenizers flattened near 96.5% from step 3,000 on, while codec-l7 went 98.7% -> 99.7%.
+- Both arms failed the gate, so no NCM was trained and the bits rule was never measured. Rule: STOP.
+- Reading: with only a token lookup in front of the quantizer, the small 2-layer decoder cannot rebuild exact
+  code from the codes. The attention encoder we added is what made reconstruction near-perfect, so upstream's
+  text recipe does not carry over to code at this size. Untested difference: upstream lm1b also uses a larger
+  decoder (4 layers, width 384, vs our 2 layers, width 256); that would be a new experiment, not part of this rule.
+- Baseline measured for this rule (ncm-l7, code_scale/level_bits.py): GPT 250.5, NCM 1,124.4 bits per chunk;
+  level 0 costs 32.7 bits vs 33.2 for a code-frequency guess with no context at all.
+
+## Idea 1b (2026-11-03): upstream's 4-block decoder does not rescue the lookup tokenizer; verdict STOP
+
+Plan: docs/ncm-next-plan.md, "Idea 1b". Pipeline code_scale/pipeline_1b.sh, 21:38 -> stopped by rule at 22:54.
+
+| Tokenizer (5,000 steps) | Tokens rebuilt | Exact chunks | Gate |
+|---|---|---|---|
+| codec-l7 (attention encoder, 2-block decoder) | 99.72% | 88.1% | pass |
+| codec-lk-lookup-group4 (lookup, 2-block decoder) | 96.61% | 20.7% | fail |
+| codec-lk4 (lookup, 4-block decoder as lm1b) | 96.59% | 22.9% | fail |
+
+- The 4-block decoder tracked the 2-block run almost exactly (step 1,500: 93.4% vs 93.9%; step 3,000: 96.4% vs
+  96.4%). Decoder size is not the limit; the encoder is. A position that sees only its own token cannot be
+  quantized into codes that rebuild exact code, at this size, whatever decoder follows.
+- So at this scale there is a trade: the attention encoder rebuilds well but its codes cost ~874 extra bits; the
+  lookup encoder cannot pass the gate. The tokenizer-recipe question is closed as planned.
+- The whole pipeline after the tokenizer was dry-run offline beforehand (internet blocked, throwaway folders),
+  so a pass would have run to the end without internet.
+
+## Joint training (2026-11-03/04): a gentle guess push does nothing; verdict STOP at the pre-test
+
+Plan: docs/joint-training-plan.md (fixed before results). Pipeline code_scale/pipeline_j.sh, 23:39 -> stopped by
+rule at 01:35 (pre-test). 300 joint steps from codec-l7 + ncm-l7 per arm, tokenizer lr 1e-4, generator lr 3e-4.
+
+| lambda | Tokens rebuilt | Exact chunks | Joint generator bits per chunk (held-out) |
+|---|---|---|---|
+| 0 (control) | 99.65% | 83.6% | 1,301.0 |
+| 0.01 | 99.65% | 83.8% | 1,304.2 |
+| 0.03 | 99.64% | 83.6% | 1,305.1 |
+| 0.1 | 99.66% | 84.3% | 1,297.8 |
+
+- Pick rule needed <= 95% of the control (<= 1,236 bits): none qualifies. Rule: STOP, no main run.
+- The push did not even lower its own target: the training-log guess term (steps 200-299) is 7.818, 7.820,
+  7.809, 7.818 nats for the four arms. At this learning rate and length the encoder barely moved, so this
+  tests "a gentle push", not joint training as such.
+- Code churn without any push: in 300 steps 59% of level-0 codes and 57% of level-6 codes changed vs codec-l7
+  (the codebook keeps moving), and the joint generator lost ground (1,124 -> 1,301 bits) chasing them.
+- Rebuild held in every arm (99.6-99.7% tokens), so joint training itself is safe for the tokenizer.
+
+## Strong-push check (2026-11-04): the push moves its own target but not the held-out bits; verdict STOP
+
+Plan: docs/joint-training-plan.md, "Strong-push check" (fixed before results). 08:38 -> stopped by rule at 10:04.
+300 joint steps per arm from codec-l7 + ncm-l7, tokenizer lr 5e-4 in every arm.
+
+| lambda | Tokens rebuilt | Exact chunks | Held-out bits per chunk | Training guess term (nats, steps 200-299) |
+|---|---|---|---|---|
+| 0 (control) | 99.10% | 65.9% | 1,345.8 | 7.769 |
+| 0.3 | 99.08% | 65.6% | 1,320.5 | 7.679 |
+| 1.0 | 98.33% | 43.5% | 1,420.6 | 7.411 |
+
+- No arm qualifies (needed >= 99.5% tokens, >= 70% exact, bits <= 1,278.5). Rule: STOP joint training, and with it
+  NCM for code at this scale.
+- Unlike the gentle pre-test, the push now works on its own target (7.77 -> 7.68 -> 7.41 nats). But on held-out
+  chunks the best arm (0.3) is only 1.9% below the control, and at 1.0 the bits get worse and the rebuild breaks
+  (codes changed: 70% at level 0, 76% at level 6). The faster learning rate alone already costs rebuild quality
+  (control 99.10% / 65.9% vs codec-l7's 99.72% / 88.1%).
+- Reading: making the soft scores agree with the generator during training does not turn into codes a fresh look
+  at held-out code finds easier; pushing harder trades away the rebuild first. At this size, the tokenizer cannot be
+  made both exact and guessable by this route.

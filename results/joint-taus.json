@@ -1,0 +1,15 @@
+{
+  "codec": "codec-l7",
+  "chunks": 1024,
+  "seed": 7,
+  "taus": [
+    6726.921875,
+    1.4417858123779297,
+    3.6360931396484375,
+    15.399200439453125,
+    4.502677917480469,
+    22.33777618408203,
+    2.095386505126953
+  ],
+  "rule": "median gap between 2nd-nearest and nearest code distance, per level"
+}

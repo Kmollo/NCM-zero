@@ -1,0 +1,41 @@
+{
+  "stage": "codec",
+  "steps": 5000,
+  "batch": 64,
+  "params": 9266432,
+  "vocab": 8192,
+  "levels": [
+    4,
+    8,
+    16,
+    32,
+    48,
+    64,
+    64
+  ],
+  "codebooks": [
+    2048,
+    2048,
+    2048,
+    2048,
+    2048,
+    2048,
+    2048
+  ],
+  "encoder": "lookup-layer",
+  "plan_weight": 0.0,
+  "plan_batch": 0,
+  "restart_fix": true,
+  "train_seconds": 746.1,
+  "final_loss": 1.3951241970062256,
+  "val_reconstruction": {
+    "token_accuracy": 0.9181060791015625,
+    "chunk_exact": 0.0537109375,
+    "chunks": 1024,
+    "codes_used_l0_l2": [
+      672,
+      271,
+      1173
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{"step": 0, "rec": 1.9934, "vq": 0.8035, "guess": 7.9715, "gen": 4.5249, "guess_bits_per_chunk": 2714.1, "elapsed_s": 6.1, "token_accuracy": 0.9981689453125, "chunk_exact": 0.90234375, "chunks": 256, "codes_used_l0_l2": [334, 661, 1519]}
+{"step": 25, "rec": 0.8094, "vq": 0.7997, "guess": 7.7904, "gen": 4.2368, "guess_bits_per_chunk": 2652.5, "elapsed_s": 129.7}
+{"step": 50, "rec": 0.0431, "vq": 0.802, "guess": 7.7235, "gen": 4.1288, "guess_bits_per_chunk": 2629.7, "elapsed_s": 252.7}
+{"step": 75, "rec": 5.2945, "vq": 0.8024, "guess": 7.668, "gen": 4.2344, "guess_bits_per_chunk": 2610.8, "elapsed_s": 376.5}
+{"step": 100, "rec": 0.0306, "vq": 0.7964, "guess": 7.6735, "gen": 3.9584, "guess_bits_per_chunk": 2612.6, "elapsed_s": 499.4, "token_accuracy": 0.9976806640625, "chunk_exact": 0.86328125, "chunks": 256, "codes_used_l0_l2": [260, 641, 1506]}
+{"step": 125, "rec": 0.6544, "vq": 0.7823, "guess": 7.705, "gen": 3.8864, "guess_bits_per_chunk": 2623.4, "elapsed_s": 624.9}
+{"step": 150, "rec": 0.0422, "vq": 0.7939, "guess": 7.7616, "gen": 3.9088, "guess_bits_per_chunk": 2642.6, "elapsed_s": 747.8}
+{"step": 175, "rec": 0.0425, "vq": 0.7908, "guess": 7.7855, "gen": 3.9655, "guess_bits_per_chunk": 2650.8, "elapsed_s": 871.1}
+{"step": 200, "rec": 0.0641, "vq": 0.7991, "guess": 7.7893, "gen": 4.1177, "guess_bits_per_chunk": 2652.1, "elapsed_s": 994.9, "token_accuracy": 0.9976806640625, "chunk_exact": 0.8671875, "chunks": 256, "codes_used_l0_l2": [252, 628, 1513]}
+{"step": 225, "rec": 0.8077, "vq": 0.7956, "guess": 7.787, "gen": 4.0967, "guess_bits_per_chunk": 2651.3, "elapsed_s": 1120.3}
+{"step": 250, "rec": 0.037, "vq": 0.8002, "guess": 7.8133, "gen": 4.1164, "guess_bits_per_chunk": 2660.2, "elapsed_s": 1244.2}
+{"step": 275, "rec": 0.0294, "vq": 0.7875, "guess": 7.8626, "gen": 3.978, "guess_bits_per_chunk": 2677.0, "elapsed_s": 1368.2}
+{"step": 299, "rec": 0.0413, "vq": 0.7958, "guess": 7.8499, "gen": 4.1933, "guess_bits_per_chunk": 2672.7, "elapsed_s": 1488.7, "token_accuracy": 0.99774169921875, "chunk_exact": 0.87109375, "chunks": 256, "codes_used_l0_l2": [225, 641, 1477]}

@@ -1,0 +1,9 @@
+2026-11-03 23:39:10 START
+2026-11-03 23:39:11 pre-test lambda 0: 300 joint steps
+2026-11-04 00:08:13 pre-test lambda 0.01: 300 joint steps
+2026-11-04 00:37:14 pre-test lambda 0.03: 300 joint steps
+2026-11-04 01:06:20 pre-test lambda 0.1: 300 joint steps
+2026-11-04 01:35:29 pre-test pick: lambda none
+2026-11-04 01:35:30 STOPPED: no lambda kept the rebuild and cut bits by 5% vs lambda 0
+2026-11-04 01:35:30 JOINT_DONE
+2026-11-04 01:35:31 verdict: STOP: no lambda kept the rebuild and cut bits by 5% vs lambda 0

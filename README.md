@@ -11,8 +11,8 @@ autoregressive (AR) model of about the same size, trained on the same data for t
 steps on one laptop GPU (Quadro T1000).
 
 Every continue/stop rule was written down **before** its result came in
-([docs/ncm-next-plan.md](docs/ncm-next-plan.md)). The final rule said Path C was the last bet, and
-it failed, so the verdict is **STOP: NCM for code at this scale**.
+([docs/ncm-next-plan.md](docs/ncm-next-plan.md), [docs/joint-training-plan.md](docs/joint-training-plan.md)).
+Seven fixes were tried; none passed its rule, so the verdict is **STOP: NCM for code at this scale**.
 
 ## Findings
 
@@ -54,6 +54,28 @@ it failed, so the verdict is **STOP: NCM for code at this scale**.
 6. **Speed.** NCM's single-sample advantage held in some runs: 3.2× AR at batch 1 under the
    fixed protocol (Path A). It is lost at batch 32 (0.47×), where the KV-cached AR is faster.
    Path C's multi-pass decoder was slower: 0.59× at batch 1, 0.08× at batch 32.
+7. **Upstream's own text-tokenizer recipe does not carry over to code.** Our tokenizer encodes with
+   2 attention layers plus positions; every released NCM text tokenizer uses a token-lookup encoder
+   (`enc_layers=0`). An idea search with [Alien Space of Science](https://github.com/alejandrohdez00/alien-space-of-science)
+   and Claude agents ([docs/alien-search/](docs/alien-search/)) ranked switching to it first. Lookup
+   tokenizers stall near 96.6% tokens / ~21% exact chunks with either a 2-block or upstream's 4-block
+   decoder (gate: 99% / 50%), so the attention encoder is what makes exact code reconstructable.
+8. **Training the tokenizer and generator together does not make the codes guessable.** No signal about
+   predictability reaches the encoder upstream (residuals are built from `z.detach()`). We added one:
+   soft scores over the tokenizer's own code distances (their argmax is exactly its codes) carry the
+   generator's cost back into the encoder ([code_scale/joint.py](code_scale/joint.py)). Starting from the
+   working pair, 300 joint steps per setting, held-out bits of the joint generator:
+
+   | Push strength (tokenizer lr) | Tokens rebuilt | Exact chunks | Bits per chunk |
+   |---|---:|---:|---:|
+   | 0 / 0.01 / 0.03 / 0.1 (1e-4) | 99.64–99.66% | 83.6–84.3% | 1,298–1,305 |
+   | 0, control (5e-4) | 99.10% | 65.9% | 1,346 |
+   | 0.3 (5e-4) | 99.08% | 65.6% | 1,321 |
+   | 1.0 (5e-4) | 98.33% | 43.5% | 1,421 |
+
+   A setting needed bits at least 5% below its control with the rebuild held. A gentle push changes
+   nothing; a strong one lowers its own training target (7.77 → 7.41 nats) but not the held-out bits,
+   and gives up exact reconstruction first.
 
 ## What this does and does not show
 
@@ -63,23 +85,27 @@ it failed, so the verdict is **STOP: NCM for code at this scale**.
 - It does **not** show that NCM fails at large scale. Upstream's reported results use much larger
   models; one seed and one small model each are a smoke-scale signal, not a capability claim.
   Both models score 0 pass@k on HumanEval at this size.
-- The one direction left open is a different project: training the tokenizer so that its codes are
-  predictable (for example jointly with the generator), with its own plan and stop rule.
+- At this size there is a trade we could not get around: a tokenizer that rebuilds exact code needs
+  context, and its codes cost ~4.5× GPT's bits; making codes local (lookup encoder) or pushing them
+  toward guessability (joint training) breaks exact reconstruction first.
+- Untested: much larger models and data, where upstream reports NCM working on text.
 
 ## Repo layout
 
 | Path | What |
 |---|---|
-| [docs/ncm-next-plan.md](docs/ncm-next-plan.md) | Paths A–C: each change and its continue/stop rule, written before results |
+| [docs/ncm-next-plan.md](docs/ncm-next-plan.md) | Paths A–C and ideas 1/1b: each change and its continue/stop rule, written before results |
+| [docs/joint-training-plan.md](docs/joint-training-plan.md) | Joint training and the strong-push check, with their rules |
+| [docs/alien-search/](docs/alien-search/) | Idea search: scored combinations, agent proposals, critic review, shortlist |
 | [docs/code-scale-v1-results.md](docs/code-scale-v1-results.md) | Full results log in order, including deviations |
 | [docs/code-scale-v1-plan.md](docs/code-scale-v1-plan.md) | Original study plan and step-6 gate |
-| `code_scale/` | Models, training, evaluation, the cause measurement (`reveal_bits.py`), verdict scripts, overnight pipelines |
+| `code_scale/` | Models, training, evaluation, bits measurements (`reveal_bits.py`, `level_bits.py`), joint training (`joint.py`, `train_joint.py`), verdict scripts, overnight pipelines |
 | `ncm_code/` | Thin adapter that loads the pinned upstream NCM modules |
 | `zero_baseline/code_bench.py` | HumanEval / easy-task sampling scorer (sandboxed) |
 | `evals/code-bench-v1/` | HumanEval (MIT) and MBPP (CC BY 4.0) task files with their licenses |
 | `results/` | Small result files for every run: summaries, step-6 reports, scores, speed, bits, verdicts, pipeline logs |
 | `data/code-pretrain-v1/` | Corpus provenance and manifest only (the corpus itself is not included) |
-| `tests/` | Tests for the NCM variants and the plan loss |
+| `tests/` | Tests for the NCM variants, the plan loss and the joint-training code choice |
 
 ## Reproducing
 
@@ -96,7 +122,8 @@ Requirements: Python 3.10, a CUDA GPU, `pip install -r requirements.txt`, and Gi
 3. Run a path, for example Path C: `bash code_scale/pipeline_c.sh` (about 6 hours on a T1000). The
    scripts call `.venv/Scripts/python.exe`; change `PY=` on another OS. The earlier pipelines
    (`pipeline.sh`, `pipeline_layout.sh`, `pipeline_path_a.sh`, `pipeline_b.sh`) reproduce the
-   earlier steps.
+   earlier steps; `pipeline_1.sh`, `pipeline_1b.sh`, `pipeline_j.sh` and `pipeline_j2.sh` the
+   tokenizer-recipe and joint-training runs (joint training needs `python -m code_scale.joint taus` first).
 4. Tests: `python -m pytest tests`.
 
 ## Credits and license
@@ -104,6 +131,8 @@ Requirements: Python 3.10, a CUDA GPU, `pip install -r requirements.txt`, and Gi
 - NCM model and tokenizer code: [HazyResearch/ncm](https://github.com/HazyResearch/ncm) (MIT), not
   vendored here.
 - HumanEval: OpenAI (MIT). MBPP: Google Research (CC BY 4.0).
+- Idea-search scoring: [Alien Space of Science](https://github.com/alejandrohdez00/alien-space-of-science) (MIT);
+  only its outputs are included (`docs/alien-search/alien_top100.json`).
 - Training data: codeparrot/codeparrot-clean; each file keeps the license of its source repository.
 - This repo's code and docs: MIT, see [LICENSE](LICENSE).
 

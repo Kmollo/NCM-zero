@@ -32,7 +32,19 @@ ATTN = os.environ.get("CODE_SCALE_ATTN", "block_diagonal")
 # level (trained with random reveals, generated in CODE_SCALE_PASSES confidence-ordered passes per level).
 REVEAL = [int(v) for v in os.environ["CODE_SCALE_REVEAL"].split(",")] if os.environ.get("CODE_SCALE_REVEAL") else []
 PASSES = int(os.environ.get("CODE_SCALE_PASSES", "3"))
-CODEC = {"embed_dim": 256, "n_layers": 4, "enc_layers": 2, "dec_layers": 2}
+# CODE_SCALE_DEC=4 gives the tokenizer decoder 4 blocks (upstream lm1b), idea 1b; default 2 as all codecs so far.
+CODEC = {"embed_dim": 256, "n_layers": 4, "enc_layers": 2, "dec_layers": int(os.environ.get("CODE_SCALE_DEC", "2"))}
+# Idea 1 (docs/alien-search): CODE_SCALE_ENC picks the tokenizer encoder.
+#   attn          : 2 bidirectional attention layers + positions, GroupNorm(8) (all code_scale codecs so far)
+#   lookup-group4 : upstream lm1b recipe: code input = token embedding only, no positions, GroupNorm(4)
+#   lookup-layer  : same lookup, but LayerNorm per position (each position's input is its token alone)
+ENCODERS = {
+    "attn": {"enc_layers": 2, "enc_positional": True, "pre_quant_groupnorm": 8, "pre_quant_norm_type": "group"},
+    "lookup-group4": {"enc_layers": 0, "enc_positional": False, "pre_quant_groupnorm": 4, "pre_quant_norm_type": "group"},
+    "lookup-layer": {"enc_layers": 0, "enc_positional": False, "pre_quant_groupnorm": 8, "pre_quant_norm_type": "layer"},
+}
+ENC = os.environ.get("CODE_SCALE_ENC", "attn")
+assert ENC in ENCODERS, f"CODE_SCALE_ENC must be one of {list(ENCODERS)}"
 NCM_GEN = {"n_embd": 384, "n_layer": 6, "n_head": 6, "dropout": 0.1}
 AR_GEN = {"n_embd": 384, "n_layer": 7, "n_head": 6, "dropout": 0.1}
 
@@ -65,9 +77,10 @@ def build_codec(vocab_size, dropout=0.0, restart_fix=False):
         in_vocab_size=vocab_size, context_length=SHAPE["chunk"],
         embed_dim=CODEC["embed_dim"], vqvae_vocab_size=list(SHAPE["codebooks"]),
         n_layers=CODEC["n_layers"], compression_factor=1, dropout=dropout,
-        enc_layers=CODEC["enc_layers"], dec_layers=CODEC["dec_layers"],
-        use_qk_norm=True, pre_quant_groupnorm=8, pre_quant_dropout=0.0,
-        enc_positional=True, dec_positional=True,
+        enc_layers=ENCODERS[ENC]["enc_layers"], dec_layers=CODEC["dec_layers"],
+        use_qk_norm=True, pre_quant_groupnorm=ENCODERS[ENC]["pre_quant_groupnorm"], pre_quant_dropout=0.0,
+        pre_quant_norm_type=ENCODERS[ENC]["pre_quant_norm_type"],
+        enc_positional=ENCODERS[ENC]["enc_positional"], dec_positional=True,
         vector_quantizer_config=OmegaConf.create({
             "clss": "multiscale_residual_vector_quantizer",
             "decay": 0.99, "epsilon": 1e-5, "commitment_cost": 0.25,

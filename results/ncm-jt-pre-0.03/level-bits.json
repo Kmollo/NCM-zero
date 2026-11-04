@@ -1,0 +1,28 @@
+{
+  "ncm": "ncm-jt-pre-0.03",
+  "codec": "codec-jt-pre-0.03",
+  "encoder": "attn",
+  "windows": 2048,
+  "ar_bits_per_chunk": 250.5,
+  "ncm_bits_per_chunk": 1305.1,
+  "ncm_bits_per_level": [
+    49.3,
+    115.6,
+    152.0,
+    244.3,
+    294.9,
+    141.1,
+    307.9
+  ],
+  "extra_bits_vs_ar": 1054.6,
+  "prior_bits_per_level": [
+    30.6,
+    75.9,
+    172.0,
+    343.4,
+    491.4,
+    675.1,
+    646.5
+  ],
+  "prior_bits_per_chunk": 2434.9
+}

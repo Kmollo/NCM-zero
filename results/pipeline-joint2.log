@@ -1,0 +1,8 @@
+2026-11-04 08:38:23 START
+2026-11-04 08:38:24 pre-test lambda 0: 300 joint steps, tokenizer lr 5e-4
+2026-11-04 09:06:57 pre-test lambda 0.3: 300 joint steps, tokenizer lr 5e-4
+2026-11-04 09:35:38 pre-test lambda 1.0: 300 joint steps, tokenizer lr 5e-4
+2026-11-04 10:04:24 pre-test pick: lambda none
+2026-11-04 10:04:25 STOPPED: no lambda kept the rebuild and cut bits by 5% vs lambda 0
+2026-11-04 10:04:25 JOINT_DONE
+2026-11-04 10:04:26 verdict: STOP: no lambda kept the rebuild and cut bits by 5% vs lambda 0

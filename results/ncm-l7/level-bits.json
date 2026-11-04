@@ -1,0 +1,28 @@
+{
+  "ncm": "ncm-l7",
+  "codec": "codec-l7",
+  "encoder": "attn",
+  "windows": 2048,
+  "ar_bits_per_chunk": 250.5,
+  "ncm_bits_per_chunk": 1124.4,
+  "ncm_bits_per_level": [
+    32.7,
+    67.2,
+    144.6,
+    238.8,
+    270.5,
+    120.5,
+    250.1
+  ],
+  "extra_bits_vs_ar": 873.9,
+  "prior_bits_per_level": [
+    33.2,
+    76.7,
+    173.6,
+    343.4,
+    489.5,
+    675.1,
+    643.4
+  ],
+  "prior_bits_per_chunk": 2434.9
+}

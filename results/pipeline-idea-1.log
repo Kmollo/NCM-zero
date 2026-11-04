@@ -1,0 +1,10 @@
+2026-11-03 13:16:41 START
+2026-11-03 13:16:42 pre-test qualifying arms (chosen first): lookup-group4 lookup-layer
+2026-11-03 19:30:53 hold released
+2026-11-03 19:30:53 codec-lk-lookup-group4: tokenizer training, 5000 steps
+2026-11-03 20:27:51 codec-lk-lookup-group4: gate FAILED
+2026-11-03 20:27:51 codec-lk-lookup-layer: tokenizer training, 5000 steps
+2026-11-03 21:24:24 codec-lk-lookup-layer: gate FAILED
+2026-11-03 21:24:24 STOPPED: no lookup tokenizer passed the reconstruction gate
+2026-11-03 21:24:24 IDEA_1_DONE
+2026-11-03 21:24:25 verdict: STOP: no lookup tokenizer passed the reconstruction gate

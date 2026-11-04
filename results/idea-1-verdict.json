@@ -1,0 +1,19 @@
+{
+  "pretest": {
+    "lookup-group4": {
+      "step": 999,
+      "token_accuracy": 0.917236328125,
+      "chunk_exact": 0.04296875
+    },
+    "lookup-layer": {
+      "step": 999,
+      "token_accuracy": 0.91888427734375,
+      "chunk_exact": 0.0546875
+    }
+  },
+  "picked": [
+    "lookup-group4",
+    "lookup-layer"
+  ],
+  "verdict": "STOP: no lookup tokenizer passed the reconstruction gate"
+}
